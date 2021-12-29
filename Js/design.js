@@ -1,12 +1,23 @@
 let $d = document;
+let click = 0;
 $d.addEventListener("DOMContentLoaded",()=>{
-    let $antiguoHeader;
-    let $header = $d.querySelector(".header");
+    let buscador = $d.querySelector(".header-buscador")
+    let btn = $d.getElementById("btn")
+    let logo = $d.querySelector(".header-logo")
+    console.log(buscador);
     if(window.matchMedia("(max-width:830px)")){
-       // $antiguoHeader = $header.removeChild($d.querySelector(".header-logo"))
-        console.log($antiguoHeader);
-    }
-    else{
-        //$header.insertAdjacentElement(0,$antiguoHeader)
+        btn.addEventListener("click",()=>{
+            if(click == 0){
+            document.querySelector("input").style.visibility="visible"
+            click = 1;
+            console.log(click);
+            }
+            else if(click == 1){
+                document.querySelector("input").style.visibility="hidden"
+                click = 0;
+                console.log(click);
+
+            }
+        })
     }
 })

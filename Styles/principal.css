@@ -216,26 +216,22 @@ body {
   width: 25%;
 }
 
-.container-main-section:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-}
-
 @media (max-width: 830px) {
   .header {
     width: 100%;
   }
   .header-logo {
-    width: 95% !important;
+    width: 25% !important;
+    -webkit-transition: 1s width !important;
+    transition: 1s width !important;
   }
   .header-buscador {
-    width: 10% !important;
+    width: 70% !important;
   }
   .header-buscador .header-buscador-container {
     width: 100%;
   }
   .header-buscador .header-buscador-container input {
-    width: 0px !important;
     visibility: hidden;
   }
 }
