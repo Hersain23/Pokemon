@@ -8,26 +8,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <title>Pokemon</title>
 </head>
 <body>
+    
     <div class="main">
-        <img src="/Resources/circles.svg" alt="Cargando..." class="loader">
+        <img src="Resources/circles.svg" alt="Cargando..." class="loader">
     </div>
+
     <div class="header" style="display: none;">
         <div class="header-logo"><img src="Resources/pokemon.png" alt="logoPokemon"></div>
         <div class="header-buscador">
             <div class="header-buscador-container">
-            <input type="text" placeholder="¿Que pokemon buscas?"/>   
+            <input type="text" placeholder="Busca al Pokemon" id="filtro" autofocus/>   
                 <button class="btn" id="btn"></button>
             </div>
         </div>
     </div>
-    <div class="container" style="display:none;">
+    <div class="container" style="display: none;" >
         <div class="container-main">
-            
         </div>
     </div>
-<script src="Js/fetchPrincipal.js"></script>
+<script src="Js/design.js"></script>
+<script src="Js/filtro.js" type="module"></script>
+
 </body>
 </html>

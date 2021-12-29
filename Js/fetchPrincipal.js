@@ -1,61 +1,62 @@
-//let $figure = document.querySelectorAll(".figure");
-//let $name = document.querySelectorAll(".name");
-//let $habilidad = document.querySelectorAll(".habilidad")
-//let $mov = document.querySelectorAll(".mov")
 let $main = document.querySelector(".main");
 let $containerMain = document.querySelector(".container-main");
 let $template = ""
-let $carga = document.querySelectorAll(".carga");
-let bandera = false;
-async function getUrlPokemon(urlPokemones){
-    for(let i=0;i<20;i++){
-        let resPokemon = await fetch(urlPokemones.results[i].url)
-        let p = await resPokemon.json();
-        setInfo(p);  
-    }
-}
-
+let $header = document.querySelector(".header")
+let $container = document.querySelector(".container")
+document.addEventListener("DOMContentLoaded",getListaPokemon("https://pokeapi.co/api/v2/pokemon"));
+let nombres = [];
+let i=0;
 async function getListaPokemon(url){
     let primeraRespuesta = await fetch(url);
-    primerJson = await primeraRespuesta.json();
-    //console.log("Primera peticion");
-    //console.log(primerJson);
-    for(let i=0;i<20;i++){
-        let resPokemon = await fetch(primerJson.results[i].url)
-        let pokemones = await resPokemon.json();
-        console.log("Segunda peticion");
-        let nombre = pokemones.species.name;
-        let imagen = pokemones.sprites.front_default
-        let nameHabilidad = pokemones.abilities[0].ability.name
-        let resHabilidades = await fetch(pokemones.abilities[0].ability.url)
-        let habilidades = await resHabilidades.json();
-        let descHabilidad = habilidades.effect_entries[0].effect;
+    let primerJson = await primeraRespuesta.json();
+    primerJson.results.forEach(element => {
+        getPokemon(element.url)
+        nombres.push({"indice":i,"nombre":element.name})
+        i++;
+    });
+}
+export {nombres}
 
-        $template +=`
-        <section class="container-main-section">
-                <figure>
-                    <div class="imagen">
-                        <img src="${imagen}" alt="" class="figure">
-                    </div>
-                    <div class="nombre">
-                        <p class="name">NOMBRE:${nombre.toUpperCase()}</p>
-                    </div>
-                    <div class="informacion">
-                        <p class="habilidad">${nameHabilidad.toUpperCase()}:${descHabilidad}</p>
-                    </div>
-                    
-                </figure>
-            </section>`
-        if(i == 19){
-            bandera = true;
-        }
-    }
-    if(bandera == true){
-        $main.style.display="none"
-        document.querySelector(".header").style.display="inline-flex"
-        document.querySelector(".container").style.display="inline-flex"
-    }
-    $containerMain.innerHTML = $template;
+function setPokemon(pokemon){
+    $template += `<a href="#" class="pokemon">
+    <div class="imagen">
+        <img src="${pokemon.sprites.front_default}" alt="${pokemon.moves.name}">
+    </div>
+    <div class="nombre">
+        ${pokemon.species.name.toUpperCase()}
+    </div>
+    <div class="info">
+        <div class="info-parte">
+            <p>Hp</p>
+            <p>${pokemon.stats[0].base_stat}</p>
+        </div>
+        <div class="info-parte">
+            <p>Attack</p>
+            <p>${pokemon.stats[1].base_stat}</p>
+        </div>
+        <div class="info-parte">
+            <p>Def</p>
+            <p>${pokemon.stats[2].base_stat}</p>
+        </div>
+        <div class="info-parte">
+            <p>Esp</p>
+            <p>${pokemon.stats[3].base_stat}</p>
+        </div>
+    </div>
+</a>`
+$containerMain.innerHTML = $template
+deleteLoaded()
 
 }
-document.addEventListener("DOMContentLoaded",getListaPokemon("https://pokeapi.co/api/v2/pokemon"));
+async function getPokemon(url){
+    let segundaRespuesta = await fetch(url)
+    let pokemon = await segundaRespuesta.json();
+    //console.log(pokemon);
+    setPokemon(pokemon)
+}
+function deleteLoaded(){
+    $main.style.display="none"
+    $header.style.display="inline-flex"
+    $container.style.display="inline-flex"
+}
+
