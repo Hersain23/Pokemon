@@ -92,7 +92,7 @@ body {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  background-image: url("/Resources/buscar.png");
+  background-image: url("../Resources/buscar.png");
   background-repeat: no-repeat;
   background-position-x: center;
   background-color: #ef5350;

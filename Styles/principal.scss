@@ -67,7 +67,7 @@ body{
         }
         .btn{
             display: inline-flex;
-            background-image: url("/Resources/buscar.png");
+            background-image: url("../Resources/buscar.png");
             background-repeat: no-repeat;
             background-position-x: center;
             background-color: $hf;
@@ -185,11 +185,9 @@ body{
         display: inline-flex !important;
         flex-direction:column;
         width:90%;
-        
     align-items: center;
         .pokemon{
             display:inline-flex !important;
-            
             width:80%;
         }
     }
